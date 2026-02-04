@@ -1,0 +1,183 @@
+/* --- RESET & GLOBAL --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55); /* Deep Space Theme */
+    color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HEADER & NAVBAR --- */
+.top-bar {
+    background: rgba(0,0,0,0.3); padding: 8px 5%;
+    display: flex; justify-content: flex-end; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+
+.navbar {
+    background: rgba(20, 30, 48, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0; 
+    width: 100%;
+    position: fixed; 
+    top: 0; 
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 80px; filter: brightness(0) invert(1); }
+.logo-text { display: flex; flex-direction: column; font-weight: 700; line-height: 1.1; }
+.logo-text small { font-size: 0.6rem; letter-spacing: 2px; color: #eae8f081; font-weight: 400; }
+
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: #ddd; font-weight: 500; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: #00d2ff; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+.menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex; align-items: center; padding-left: 8%; position: relative; overflow: hidden;
+    background: linear-gradient(to right, rgba(20,30,48,0.9), rgba(20,30,48,0.3)), 
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover; background-position: center;
+}
+.hero-content { position: relative; z-index: 2; max-width: 600px; }
+.welcome-text { font-weight: 300; font-size: 1.8rem; letter-spacing: 3px; color: #00d2ff; }
+.school-name { font-weight: 700; font-size: 3.5rem; line-height: 1.1; margin: 10px 0; background: -webkit-linear-gradient(#fff, #b4b4b4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-desc { margin-top: 15px; color: #ccc; line-height: 1.6; }
+
+.btn-glow {
+    display: inline-block; margin-top: 30px; padding: 12px 35px;
+    background: transparent; border: 2px solid #00d2ff; color: #00d2ff;
+    text-decoration: none; font-weight: 600; border-radius: 50px;
+    transition: 0.3s; box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+.btn-glow:hover { background: #00d2ff; color: #141e30; box-shadow: 0 0 20px rgba(0, 210, 255, 0.8); }
+
+/* --- STAR ANIMATION --- */
+.star { position: absolute; top: -10px; background: white; border-radius: 50%; pointer-events: none; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(110vh); } }
+
+/* --- GENERAL --- */
+.section-pad { padding: 80px 0; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 2.5rem; color: #00d2ff; margin-bottom: 10px; }
+.section-title p { color: #aaa; }
+
+/* --- FILTER BUTTONS (FIXED & FORCED) --- */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+/* 1. Keadaan MATI (Default) */
+.filter-btn {
+    background: transparent !important; /* Paksa transparan */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ccc !important; /* Teks abu-abu */
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: none !important; /* Hilangkan glow */
+}
+
+/* 2. Saat Mouse Lewat (Hover) */
+.filter-btn:hover {
+    border-color: #00d2ff !important;
+    color: #fff !important;
+}
+
+/* 3. Keadaan AKTIF/NYALA (Selected) */
+.filter-btn.active {
+    background-color: #00d2ff !important; /* Paksa Biru */
+    color: #0b0f19 !important; /* Teks Hitam */
+    border-color: #00d2ff !important;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.6) !important; /* Paksa Glow */
+    transform: scale(1.05);
+}
+
+/* --- CARDS GRID --- */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+.filter-item { display: none; } /* Default Hidden */
+.show { display: block; animation: zoomIn 0.5s ease; } /* Animation Show */
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+.card {
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px 20px;
+    border-radius: 15px; text-align: center; transition: 0.3s;
+}
+.card:hover { transform: translateY(-10px); border-color: #00d2ff; box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15); }
+.card-icon { font-size: 2.5rem; margin-bottom: 20px; color: #00d2ff; }
+.card h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+.card p { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; min-height: 40px; }
+.btn-card { display: inline-block; padding: 8px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; font-size: 0.8rem; transition: 0.3s; }
+.btn-card:hover { background: #00d2ff; color: #141e30; }
+
+/* --- ABOUT & ADMISSION --- */
+.bg-darker { background: rgba(0,0,0,0.2); }
+.about-container { display: flex; align-items: center; gap: 50px; }
+.about-img { flex: 1; }
+.about-img img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+.about-text { flex: 1; }
+.about-text h2 { color: #00d2ff; margin-bottom: 20px; font-size: 2rem; }
+.about-text p { margin-bottom: 15px; color: #ccc; line-height: 1.6; }
+.btn-outline { border: 1px solid #fff; color: #fff; padding: 10px 25px; text-decoration: none; display: inline-block; margin-top: 10px; transition: 0.3s; }
+.btn-outline:hover { background: #fff; color: #000; }
+
+.admission-box { background: linear-gradient(135deg, #00d2ff, #3a7bd5); padding: 50px; border-radius: 20px; text-align: center; color: #fff; }
+.admission-steps { display: flex; justify-content: center; gap: 40px; margin: 40px 0; }
+.step span { display: block; width: 40px; height: 40px; background: #fff; color: #3a7bd5; border-radius: 50%; font-weight: bold; line-height: 40px; margin: 0 auto 10px; }
+
+/* --- FOOTER --- */
+footer { background: #0b0f19; padding: 60px 0 20px; border-top: 1px solid #222; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
+.footer-col h3 { color: #00d2ff; margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col a { color: #888; text-decoration: none; transition: 0.3s; }
+.footer-col a:hover { color: #fff; }
+.socials a { font-size: 1.2rem; margin-right: 15px; }
+.copyright { text-align: center; border-top: 1px solid #1a1a1a; padding-top: 20px; font-size: 0.8rem; color: #555; }
+
+.scroll-up-btn {
+    position: fixed; bottom: 30px; right: 100px; width: 45px; height: 45px; 
+    background: #333; color: #fff; border-radius: 5px; display: none; 
+    align-items: center; justify-content: center; cursor: pointer; z-index: 99; transition: 0.3s;
+}
+.scroll-up-btn:hover { background: #00d2ff; color: #000; }
+
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
+    background: #25d366; color: white; border-radius: 50%; display: flex; 
+    align-items: center; justify-content: center; font-size: 28px; z-index: 100; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+    .hero { padding-left: 5%; }
+    .school-name { font-size: 2.2rem; }
+    .about-container { flex-direction: column; }
+    .admission-steps { flex-direction: column; gap: 20px; }
+    .scroll-up-btn { right: 20px; bottom: 90px; }
+}
